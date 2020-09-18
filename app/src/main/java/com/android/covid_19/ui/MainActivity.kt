@@ -1,4 +1,4 @@
-package com.android.covid_19
+package com.android.covid_19.ui
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -6,12 +6,14 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.DatePicker
+import android.widget.LinearLayout
 import android.widget.TimePicker
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.covid_19.R
+import com.android.covid_19.adapter.COVID_adapter
 import com.android.covid_19.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,6 +37,18 @@ class MainActivity : AppCompatActivity() {
         binding.c1.setOnClickListener({showfromDatePicker(this)})
         binding.c2.setOnClickListener({showtoDatePicker(this)})
         binding.c4.setOnClickListener({showtoTimePicker(this)})
+binding.but.setOnClickListener{
+val linearLayout:LinearLayoutManager = LinearLayoutManager(binding.root.context)
+    binding.rv.layoutManager = linearLayout
+    val adapter = COVID_adapter()
+    viewModel.get( fromdateandtime,todateandtime).observe(this, {
+  if (it !=null){
+      adapter.setCOVIDcases(it)
+
+  }
+    })
+    binding.rv.adapter=adapter
+}
     }
 
     private fun showfromDatePicker(context: Context) {

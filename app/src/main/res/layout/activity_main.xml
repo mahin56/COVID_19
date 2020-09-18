@@ -5,13 +5,13 @@
     <data>
         <variable
             name="mainViewModel"
-            type="com.android.covid_19.MainViewModel" />
+            type="com.android.covid_19.ui.MainViewModel" />
     </data>
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:gravity="center"
-    tools:context=".MainActivity" android:orientation="vertical">
+
+    tools:context=".ui.MainActivity" android:orientation="vertical">
 
     <TextView
         android:id="@+id/from"
@@ -77,5 +77,21 @@
                 android:layout_height="wrap_content"
                 android:text="pick date"></TextView>
         </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/but"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="check">
+
+        </Button>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
 </layout>
